@@ -50,7 +50,7 @@
     </link>
     <!--link from shoulder joint to elbow joint-->
     <joint name="Shoulder_Joint__Link01" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0.2 0"/>
+        <origin rpy="0 0 0" xyz="0 0.25 0"/>
         <parent link="Shoulder_Joint"/>
         <child link="Shoulder_Joint_Link"/>
     </joint>
@@ -67,7 +67,7 @@
     <joint name="Link01__Elbow_Joint" type="revolute">
         <axis xyz="0 0 1"/>
         <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
-        <origin rpy="0 0 0" xyz="0 0.3 0" />
+        <origin rpy="0 0 0" xyz="0 0.25 0" />
         <parent link="Shoulder_Joint_Link" />
         <child link="Elbow_Joint" />
     </joint>
@@ -80,4 +80,52 @@
             </geometry>
         </visual>
     </link>
+    <!--Link02-->
+    <joint name="Elbow_Joint__Link02" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.20 0"/>
+        <parent link="Elbow_Joint"/>
+        <child link="Elbow_Joint_Link"/>
+    </joint>
+
+    <link name="Elbow_Joint_Link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.1 0.3 0.1"/>
+            </geometry>
+        </visual>
+    </link>
+    <!--Wrist Joint-->
+    <joint name="Link02__Wrist_Joint" type="revolute">
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
+        <origin rpy="0 0 0" xyz="0 0.20 0" />
+        <parent link="Elbow_Joint_Link" />
+        <child link="Wrist_Joint" />
+    </joint>
+
+    <link name="Wrist_Joint">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius="0.1" length="0.1"/>
+            </geometry>
+        </visual>
+    </link>
+    <!--End Effector Flange-->
+    <joint name="Wrist_Joint__End_Effector" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.1 0"/>
+        <parent link="Wrist_Joint"/>
+        <child link="Wrist_Joint_Link"/>
+    </joint>
+
+    <link name="Wrist_Joint_Link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </visual>
+    </link>
+
 </robot>
